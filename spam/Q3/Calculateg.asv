@@ -1,0 +1,25 @@
+function [a b]= Calculateg( vec )
+%CALCULATEG Summary of this function goes here
+%   Detailed explanation goes here
+[N,c]=size(vec);
+a=zeros(1,c);
+b=zeros(c,c);
+% a=mean(vec);%gaussian mean
+% b=var(vec)*(N-1)/N;%/N;%var
+    for j=1:c
+        a(1,j)=1/N*sum(vec(:,j));
+    end
+size
+for i=1:N
+    temp=a;      
+    b=b+(vec(i,:)-temp)'*(vec(i,:)-temp));
+end
+b=b/N;
+% cov(vec)
+% t=var(vec(:,1))*(N-1)/N
+% b=cov(vec);
+%     for j=1:c
+%         b(j,j)=var(vec(:,j))*(N-1)/N;
+%     end
+end
+
