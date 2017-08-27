@@ -1,0 +1,72 @@
+function [ Kernelout,C] = Kernel( TrainData,TestData,method )
+%KERNEL Summary of this function goes here
+%   input:
+%   TrainData:N1*D
+%   TestData:N2*D
+%   method:1.Linear Kernel
+%   C:weight for soft factor
+
+%   output:
+%   TrainData:N1*D
+%   TestData:N2*D
+
+%   To generate Kelnel
+[rTrD,cTrD]=size(TrainData);
+[rTeD,cTeD]=size(TestData);
+if method == 1
+    Kernelout=zeros(rTrD,rTeD);
+    for i=1:rTrD
+        for j=1:rTeD
+            Kernelout(i,j)=TrainData(i,:)*TestData(j,:)';
+        end
+    end
+    C=10^6;
+elseif method == 2
+    Kernelout=zeros(rTrD,rTeD,4);
+    for p=2:5
+        for i=1:rTrD
+            for j=1:rTeD
+                Kernelout(i,j,p-1)=(TrainData(i,:)*TestData(j,:)'+1).^p;
+            end
+        end
+    end
+    C=10^6;
+    
+elseif method == 3 
+    Kernelout=zeros(rTrD,rTeD,4);
+    for p=2:5
+        for i=1:rTrD
+            for j=1:rTeD
+                Kernelout(i,j,p-1)=(TrainData(i,:)*TestData(j,:)'+1).^p;
+            end
+        end
+    end
+    C=0;
+    
+elseif method == 4 
+    Kernelout=zeros(rTrD,rTeD);
+    for p=2:5
+        for i=1:rTrD
+            for j=1:rTeD
+                Kernelout(i,j,p-1)=(TrainData(i,:)*TestData(j,:)';
+            end
+        end
+    end
+    C=10^6;
+    
+elseif method == 5 
+    Kernelout=zeros(rTrD,rTeD,1);
+    for p=2:2
+        for i=1:rTrD
+            for j=1:rTeD
+                Kernelout(i,j,p-1)=TrainData(i,:)*TestData(j,:)';
+            end
+        end
+    end
+    C=0;    
+else 
+    x='error mode'
+end
+    
+end
+
