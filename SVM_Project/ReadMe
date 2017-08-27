@@ -1,0 +1,6 @@
+#Same source code to apply 
+1)Linear kernel with hardmargin 
+2)Linear kernel with softmargin
+3)Polynomial  kernel with softmargin
+4)New options 
+to SVM algorithm
